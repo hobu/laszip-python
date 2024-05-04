@@ -38,13 +38,13 @@ jobs:
     - name: Install cibuildwheel
       run: |
         python -m pip install cibuildwheel==2.17.0
-    - name: Run MacOS Preinstall Build
-      if: startsWith(matrix.os, 'macos')
-      run: |
-        # provides sha256sum
-        brew install coreutils
-        pip install cmake
-        bash ci/install_libspatialindex.bash
+    # - name: Run MacOS Preinstall Build
+    #   if: startsWith(matrix.os, 'macos')
+    #   run: |
+    #     # provides sha256sum
+    #     brew install coreutils
+    #     pip install cmake
+    #     bash ci/install_libspatialindex.bash
     - uses: ilammy/msvc-dev-cmd@v1
       if: startsWith(matrix.os, 'windows')
     # - name: Run Windows Preinstall Build
@@ -71,7 +71,7 @@ jobs:
       CIBW_BUILD: ${{matrix.python_tag}}
       CIBW_TEST_REQUIRES: pytest numpy
       CIBW_TEST_COMMAND: "pytest -v {project}/tests"
-      CIBW_BEFORE_BUILD_LINUX: "pip install cmake; bash {project}/ci/install_libspatialindex.bash"
+      # CIBW_BEFORE_BUILD_LINUX: "pip install cmake; bash {project}/ci/install_libspatialindex.bash"
 
     steps:
     - uses: actions/checkout@v3
