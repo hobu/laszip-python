@@ -12,8 +12,9 @@ if(NOT SKBUILD)
 endif()
 
 find_package(pybind11)
-#find_package(LASzip MODULE REQUIRED)
 
+# hammer laszip to build a static lib
+set(LASZIP_BUILD_STATIC ON CACHE INTERNAL "" FORCE)
 set(LASZIP_VENDOR "LASzip-3.4.4")
 add_subdirectory(src/vendor/${LASZIP_VENDOR})
 
@@ -31,7 +32,6 @@ target_include_directories(laszip-python
         PRIVATE
             src/vendor/${LASZIP_VENDOR}/dll)
 target_link_libraries(laszip-python PRIVATE laszip)
-#add_dependencies(laszip-python laszip)
 
 install(TARGETS laszip-python DESTINATION laszip)
 if (WIN32)
