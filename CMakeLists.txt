@@ -17,8 +17,9 @@ find_package(pybind11)
 set(LASZIP_BUILD_STATIC ON CACHE INTERNAL "" FORCE)
 set(LASZIP_VENDOR "LASzip-3.4.4")
 add_subdirectory(src/vendor/${LASZIP_VENDOR})
+# set_target_properties(laszip PROPERTIES EXPORT_NAME laszip_base)
 
-pybind11_add_module(laszip-python
+pybind11_add_module(laszip
         src/laszip.cpp
         src/laszip_error.h
         src/lasunzipper.h
@@ -28,14 +29,15 @@ pybind11_add_module(laszip-python
         src/python_istreambuf.h
         src/python_ostreambuf.h)
 
-target_include_directories(laszip-python
+target_include_directories(laszip
         PRIVATE
             src/vendor/${LASZIP_VENDOR}/dll)
-target_link_libraries(laszip-python PRIVATE laszip)
-set_target_properties(laszip-python PROPERTIES
+target_link_libraries(laszip PRIVATE  laszip_base)
+set_target_properties(laszip PROPERTIES
     POSITION_INDEPENDENT_CODE TRUE)
 
-install(TARGETS laszip-python DESTINATION laszip)
+    # set_target_properties(laszip-python PROPERTIES EXPORT_NAME laszip)
+install(TARGETS laszip DESTINATION laszip)
 if (WIN32)
     install(FILES ${LASZIP_DLL} DESTINATION laszip)
 endif()

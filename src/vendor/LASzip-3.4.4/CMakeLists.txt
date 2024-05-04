@@ -63,8 +63,8 @@ configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/laszip_api_version.h.in
     ${LASZIP_API_VERSION_H})
 
-set(LASZIP_BASE_LIB_NAME laszip)
-set(LASZIP_API_LIB_NAME laszip_api)
+set(LASZIP_BASE_LIB_NAME laszip_base)
+set(LASZIP_API_LIB_NAME laszip_base_api)
 
 if(WIN32)
     set(LASZIP_BASE_LIB_NAME "${LASZIP_BASE_LIB_NAME}${LASZIP_API_VERSION_MAJOR}")
