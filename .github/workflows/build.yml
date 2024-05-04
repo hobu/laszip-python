@@ -20,7 +20,7 @@ jobs:
     env:
       CIBW_SKIP: pp* *-win32
       CIBW_TEST_REQUIRES:
-      CIBW_TEST_COMMAND: "python -c 'import laszip'"
+      CIBW_TEST_COMMAND: 'python -c "import laszip"'
       # we are copying the shared libraries ourselves so skip magical copy
       CIBW_REPAIR_WHEEL_COMMAND_MACOS: ""
       MACOSX_DEPLOYMENT_TARGET: 10.9
