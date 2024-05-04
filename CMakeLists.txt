@@ -32,6 +32,8 @@ target_include_directories(laszip-python
         PRIVATE
             src/vendor/${LASZIP_VENDOR}/dll)
 target_link_libraries(laszip-python PRIVATE laszip)
+set_target_properties(laszip-python PROPERTIES
+    POSITION_INDEPENDENT_CODE TRUE)
 
 install(TARGETS laszip-python DESTINATION laszip)
 if (WIN32)
